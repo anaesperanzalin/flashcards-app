@@ -14,13 +14,13 @@ class AddDeck extends React. Component {
         const { text } = this.state
         saveDeckTitle(text)
         this.props.dispatch(addDeck(text))
-        // this.props.navigation.navigate('DeckView', { })
+        
     }
 
 
     render(){
         return (
-            <View>
+            <View style= {StyleSheet.container}>
                 <Text> What's the Title of this New Deck? </Text>
                 <TextInput 
                     onChangeText = {(text)=> this.setState({text: text})}
