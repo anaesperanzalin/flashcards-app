@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Button, TextInput } from 'react-native'
 import { saveDeckTitle } from '../utils/api'
 import { addDeck } from '../actions'
 
-class AddDeck extends React. Component {
+class AddDeck extends React.Component {
 
     state = {
         text: ''
@@ -20,7 +20,7 @@ class AddDeck extends React. Component {
 
     render(){
         return (
-            <View style= {StyleSheet.container}>
+            <View style= {styles.container}>
                 <Text> What's the Title of this New Deck? </Text>
                 <TextInput 
                     onChangeText = {(text)=> this.setState({text: text})}

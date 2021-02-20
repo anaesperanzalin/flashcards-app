@@ -3,22 +3,24 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import DeckList from './components/DeckList'
-import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons' 
-import { blue, white } from './utils/colors'
+import DeckView from './components/DeckView'
 import AddDeck from './components/AddDeck'
-import TabNavigator from './components/TabNavigator'
+
+import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons'
+import { blue, white } from './utils/colors'
+
+import Navigation from './components/Navigation'
 import { NavigationContainer } from '@react-navigation/native';
+import MyStack from './components/StackNavigator';
 
 
 
 export default function App() {
   return (
     <NavigationContainer>
-    <View style={{flex : 1}}>
-      
-      <TabNavigator/>
-      
-    </View>
+      <View style={{ flex: 1 }}>
+        <Navigation />
+      </View>
     </NavigationContainer>
   );
 }
