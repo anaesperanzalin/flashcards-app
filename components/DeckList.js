@@ -1,15 +1,26 @@
 import React from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
 import { getData } from '../utils/api'
-import MyStack from './StackNavigator'
+import { connect } from 'react-redux'
 
-function DeckList({ navigation }) {
+import { getDecks} from '../utils/api'
+import {receiveDecks} from '../actions'
+import reducer from '../reducers'
 
 
-    const decks = getData()
+function DeckList({ navigation}) {
+        getDecks()
+        //.then( decks => receiveAllDecks(decks))
+        
+        //console.log('decks', decks)
+        console.log('receiveActions', receiveDecks())
+        console.log('reducer', reducer)
 
-    console.log('navigation', navigation);
-    return (
+
+
+        const decks = getData()
+
+        return (
         <View style={styles.container}>
             {Object.keys(decks).map((deck) => {
                 const { title, questions } = decks[deck]
@@ -18,7 +29,7 @@ function DeckList({ navigation }) {
                         <Text> {title} </Text>
                         <Text> {questions.length} questions </Text>
                         <Button
-                            onPress={() => navigation.navigate('AddDeck')}
+                            onPress={() => navigation.navigate('DeckView', {deck})}
                             title="View Deck" />
                     </View>
 
@@ -38,5 +49,17 @@ const styles = StyleSheet.create({
 })
 
 
+function mapDispatchToProps(dispatch) {
+    return {
+        receiveAllDecks: (decks) => dispatch (receiveDecks(decks))
+    }
+}
 
-export default DeckList
+
+function mapStateToProps (decks){
+    
+    return decks
+    
+};
+
+export default connect (mapStateToProps, mapDispatchToProps) (DeckList)

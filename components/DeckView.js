@@ -1,21 +1,36 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Button } from 'react-native'
+import { getData } from '../utils/api'
 
-class DeckView extends React.Component {
-    render() {
-        return (
-            <View style={styles.container}>
-                <Text>
-                    DeckView component woohoo!
-                    狗 what does this mean?
+const decks = getData()
 
-                    Dog
+export default function DeckView({ route }) {
 
-            </Text>
-            </View>
-        )
-    }
+    const deck = route.params.deck;
+
+    console.log('decks[deck]', decks[deck]);
+    
+    return (
+        <View style={styles.container}>
+
+            <Text> Name of the Deck: {route.params.deck}</Text>
+            {decks && deck && decks[deck] && decks[deck].questions?
+            <Text>{decks[deck].questions.length} Questions </Text> : undefined}
+             {decks[deck].questions.map((question, index)=> (
+                 <Text key={index}>
+                     {question.question}
+                     {/* {question.answer} */}
+                     
+                 </Text>
+
+
+            )
+                
+            )} 
+        </View>
+    )
 }
+
 
 const styles = StyleSheet.create({
     container: {
@@ -28,5 +43,5 @@ const styles = StyleSheet.create({
 )
 
 
-export default DeckView
+
 
